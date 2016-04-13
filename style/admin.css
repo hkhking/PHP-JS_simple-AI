@@ -1,0 +1,181 @@
+#main{
+    width:1240px;
+}
+
+#header{
+    width:100%;
+    background-color: #99ccff;
+    height: 100px;
+}
+#header span{
+    position: relative;
+    left:30px;
+    top:30px;
+    font-size: 3em;
+    font-weight: bolder;
+}
+
+#addKey{
+    position: relative;
+    top:40px;
+    left:80px;
+}
+
+#addKey label{
+    font: bold 20px/1 "helvetica neue",helvetica,arial,sans-serif
+}
+
+#SUBAddKey{
+    height:30px;
+    font-size: 1em;
+}
+
+#ProductTable{
+    position: relative;
+    margin-top:60px;
+}
+
+#ProductTable table{
+    width:900px;
+    text-align: center;
+    margin-left:10%;
+}
+#ProductTable table tr td a{
+    width: 80px;
+    margin-left: 30px;
+}
+
+#showTip,#showTip2,#tip{
+    display: none;
+}
+
+#showTip table,#showTip2{
+    text-align:center!important;
+    position: absolute;
+    width: 600px;
+    height: 420px;
+    background: none repeat scroll 0px 0px rgba(0, 175, 204, 0.9) !important/*实现FF背景透明，文字不透明*/
+    filter:Alpha(opacity=90); background:#00AFCC;/*实现IE背景透明*/
+    top: 150px;
+    left: 20%;
+}
+
+#showTip label,#showTip h3,#showTip2 h3{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+}
+
+#showTip2 label{
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+}
+#showTip2 table{
+    width:100%;
+}
+
+#showTip2 table tr td.title{
+    width:20%;
+    text-align: right;
+}
+
+#showTip2 table tr td.txt input{
+    width:90%;
+}
+#showTip2 table tr td.txt textarea,#edui1{
+    width:90%!important;
+    height:235px!important;
+}
+#edui1_iframeholder{
+    width:100%!important;
+    height:180px!important;
+}
+#showTip2 table tr td.BUT input{
+     margin-left: 15%;
+}
+
+
+.thoughtbot {
+    cursor:pointer;
+    width: 80px;
+    height:40px;
+    background-color: #99ccff;
+    border: 1px solid;
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px 1px rgba(255, 115, 100, 0.4) inset, 0px 1px 3px #333;
+    color: #FFF;
+    font: bold 20px/1 "helvetica neue",helvetica,arial,sans-serif;
+    padding: 12px 0px 14px;
+    text-align: center;
+    text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
+    left: 60px;
+    margin-right: 30px;
+     position: relative
+}
+
+#LogList{
+    position: relative;
+    margin-top: 6%;
+}
+
+#LogList table{
+    margin-left:10%;
+     width:900px;
+     border-collapse: collapse; 
+}
+
+#LogList table td {
+    border:1px solid #000;
+}
+
+#LogList label{
+    text-align: left!important;
+}
+
+#LogList a{
+    float: right;
+    margin-right: 20%;
+}
+
+#LogList hr{
+    color:#07EFCE;
+}
+
+#tip{
+    position: fixed;
+    width: 600px;
+    height: 420px;
+    background-color: #98D0E6;
+    top: 150px;
+    left: 20%;
+    line-height: 1.5rem;
+    overflow: auto;
+}
+
+#showTip3Head{
+    float: right;
+    margin-right: 5%;
+}
+
+#Total{
+    margin-top: 4%;
+font-size: 1.2em;
+float: right;
+margin-right: 20%;
+position: relative;
+}
+
+#footer{
+    width: 800px;
+    position: relative;
+    margin-left: 10%;
+}
+
+#footer a{
+    margin-left: 15px;
+}
+
+#page{
+    text-align: center;
+}
