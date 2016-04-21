@@ -1,7 +1,4 @@
-/*
-   hkhking hkhking@outlook.com
-   整合js
-*/
+;
 (function ($, window) {
 	var keImg = 'images/sinaicon.jpg',
 		ownImg = 'images/customicon.jpg',

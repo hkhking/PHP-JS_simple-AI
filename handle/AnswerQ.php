@@ -6,16 +6,23 @@
  * @date 2014-12-18
  * 
  */
-if(!isset($_SESSION)){ session_start();}
-require_once '../class/sql.php';
 
+require_once '../class/sql.php';
 
 class AnswerQ {
     private $email=null;
      function AnswerQ(){
         $this->db=new sqldb();
+        $this->mmc = new Memcache;
+        $this->mmc->connect();  
         $this->product=  isset($_SESSION['product'])?$_SESSION['product']:null;
         $this->Word=  isset($_SESSION['kind'])?$_SESSION['kind']:null;
+        $this->email=$_SESSION['email'];
+    }
+    
+        
+    function setUser($user){
+        $_SESSION['email']=$user;
     }
     
     function ChooseQuestion($word){
@@ -28,11 +35,19 @@ class AnswerQ {
     
     function DefaultQ(){
         $_SESSION['product']=null;
-        $res=$this->db->getDefalutQ();
+        $ret=$this->mmc->get("DefaultQ");
+        if(!$ret){
+            $res=$this->db->getDefalutQ();
+            $this->mmc->set("DefaultQ",$res);
+        }else{
+            $res=$ret;
+        }
+        
         if(!$res){
             return false;
         }
         $tmp['list']=$res;
+        $tmp['email']=$_SESSION['email'];
         return $tmp;
     }
     
@@ -41,7 +56,13 @@ class AnswerQ {
           $this->product=$_SESSION['product'];
         }
         $this->product=$word;
-        $res=$this->db->getDefalutProductQ($this->product);
+        $ret=$this->mmc->get("Default".$this->product);
+         if(!$ret){
+             $res=$this->db->getDefalutProductQ($this->product);
+             $this->mmc->set("Default".$this->product,$res);
+        }else{
+            $res=$ret;
+        }
         if(!$res){
             return false;
         }
@@ -90,8 +111,15 @@ class AnswerQ {
        return true;
     }
     
-    function NoMatchWord(){
-        $res=$this->db->getNoWord($this->product);
+    function NoMatchWord(){   
+         $ret=$this->mmc->get("NoMatchWord".$this->product);
+         if(!$ret){
+               $res=$this->db->getNoWord($this->product);
+               $this->mmc->set("NoMatchWord".$this->product,$res);
+        }else{
+            $res=$ret;
+        }
+
         if(!$res){
             return false;
         }
@@ -124,7 +152,6 @@ class AnswerQ {
        $res=$this->db->saveLogdb($email,$ua,$ip);
        return $res;
     }
-    
     
     function ChangeStatu($word){
             $a=explode("_",$word);

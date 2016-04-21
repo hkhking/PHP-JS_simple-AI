@@ -19,12 +19,21 @@ switch ($act) {
     break;
     case "AddPro":
         $res=$pro->AddProduct($word);
+        if($res){
+            $pro->delMC();
+        }
     break;
     case "ChangeStatu":
         $res=$pro->ProChangeStatu($word);
+        if($res){
+            $pro->delMC();
+        }
     break;
     case "UpdatePro":
         $res=$pro->ProUpdateName($word);
+        if($res){
+            $pro->delMC();
+        }
     break;
     case "InfoPro";
         $res=$pro->InfoPro($word);
@@ -34,11 +43,17 @@ switch ($act) {
         if($res!=false){
             $res=$pro->InfoPro($res);
         }
+        if($res){
+            $pro->delMC();
+        }
     break;
     case "AddWord":
         $res=$pro->AddWord($word);
         if($res!=false){
             $res=$pro->InfoPro($res);
+        }
+        if($res){
+            $pro->delMC();
         }
     break;
     case "ShowEidtForm":
@@ -52,14 +67,23 @@ switch ($act) {
         if($res!=false){
             $res=$pro->InfoPro($res);
         }
+        if($res){
+            $pro->delMC();
+        }
     break;
     case "DelPro":
         $res=$pro->DelPro($word);
+        if($res){
+            $pro->delMC();
+        }
     break;
     case "DelWord":
         $res=$pro->DelWord($word);
          if($res!=false){
             $res=$pro->InfoPro($res);
+        }
+        if($res){
+            $pro->delMC();
         }
     break;
     default:

@@ -5,7 +5,6 @@
  * @date 2014-12-23
  * 
  */
-
 require_once '../class/sql.php';
 
 class Product {
@@ -66,7 +65,7 @@ class Product {
                             . "<td><a href='###' id='editWord$i' class='EditWord'>编辑</a>"
                             ."<input type='hidden' id='ValueWord$i' value='".$v['id']."'/></tr>";
                     }else{  
-                     $tmpl.="<tr><td>$i</td><td>".$v['kind']."</td><td>".$v['stime']."</td><td>$statu</td>"
+                     $tmpl.="<tr><td>$i</td><td id='NameKey$i'>".$v['kind']."</td><td>".$v['stime']."</td><td>$statu</td>"
                             . "<td><a href='###' id='editWord$i' class='EditWord'>编辑</a>"
                             . "<a href='###' id='StatuWord$i' class='StatuWord'>状态</a>"
                             . "<a href='###' id='DelWord$i' class='DelWord'>删除</a><input type='hidden' id='ValueWord$i' value='".$v['id']."'/>"
@@ -115,5 +114,11 @@ class Product {
             $res=$tmpl."</table>";
         }
         return $res;
+    }
+    
+    function delMC(){
+        $mmc = new Memcache;
+        $mmc->connect(); 
+        $mmc->flush();
     }
 }

@@ -12,6 +12,8 @@ require '../handle/AnswerQ.php';
 
 $act = isset($_POST['act']) ? replaceSpecialchars(trim($_POST['act'])) : null;
 $word = isset($_POST['word']) ? replaceSpecialchars(trim($_POST['word'])) : null;
+$user=isset($_POST['user']) ? replaceSpecialchars(trim($_POST['user'])) : null;
+
 
 if($act==0){
     $AA=new FormatWord($word);
@@ -19,6 +21,9 @@ if($act==0){
 }
 $A0=new AnswerQ();
 
+if(!is_null($user)){
+    $A0->setUser($user);
+}
 switch ($act) {
     case 1:
         $res=$A0->DefaultQ();

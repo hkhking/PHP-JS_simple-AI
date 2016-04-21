@@ -1,10 +1,10 @@
-<?php
+<!--
 /**
  * im 客服系统
  * @author hkhking hkhking@outlook.com
  * @date 2014-12-18
  */
-
+-->
 <!DOCTYPE>
 <html>
 <head>
@@ -16,11 +16,11 @@ ol p{width: 100%;text-align: right;}
 ol p span{color:red;font-weight: bolder;}
 li.answear p{text-align: left}
 </style>-->
- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/style/jqui.css">
  <link href="style/CustomService20150304.css" rel="stylesheet" type="text/css"/>
-<script src="//code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="/js/jq.js" type="text/javascript"></script>
+<script src="/js/jqm.js" type="text/javascript"></script>
+<script src="/js/jqui.js"></script>
 
 <script src="/js/index.js" type="text/javascript"></script>
  

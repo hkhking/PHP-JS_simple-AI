@@ -1,10 +1,11 @@
 /* 
  * IM系统 后台查询
- * hkhking hkhking@outlook.com
+ * yunhao@staff.sina.com.cn
  * 2014-12-26
  */
 
 $(document).ready(function(){
+    chklogin();
     getHeaderContorl();
     
     $("#LogList").on("click","a.CHKList",function(){
@@ -85,4 +86,13 @@ function getHeaderContorl(){
         }
         $(".datepicker").datepicker({dateFormat: "yy-mm-dd"}); 
     },"json");
+}
+
+function chklogin(){
+         $.post("../control/ChkUser.php",{"act":1},function(res){
+                    if(!res.result){
+                        alert(res.msg);
+                        location.href=res.data;
+                    }
+          },"json");
 }

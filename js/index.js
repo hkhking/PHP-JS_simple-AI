@@ -1,11 +1,17 @@
 /* 
  * IM系统测试
- * hkhking hkhking@outlook.com
+ * yunhao@staff.sina.com.cn
  * 2014-12-29
  */
 var email="USER";
 $(document).ready(function(){
-     $.post("../control/AnswerApi.php",{"act":1},function(res){
+    
+     var a=prompt("请填写联系方式","无");
+     if(a===null){
+            a="无";
+     }
+        
+     $.post("../control/AnswerApi.php",{"act":1,"user":a},function(res){
          var a="<li><label>请选择以下产品线：</label><br/>";
          if(res.data.email!=null){
              email=res.data.email;

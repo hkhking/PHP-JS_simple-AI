@@ -191,7 +191,7 @@ class sqldb {
     }
 
     function updateProductStatu($word) {
-        $sql = "select statu from keywordlist where id ='$word'";
+        $sql = "select statu,product from keywordlist where id ='$word'";
         $sth = $this->db->prepare($sql);
         $sth->execute();
         $rs = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -202,10 +202,10 @@ class sqldb {
         } else {
             $tmp = $rs[0]['statu'];
         }
-        $sql1 = "update keywordlist set statu='$tmp' where id= '$word'";
+        $sql1 = "update keywordlist set statu='$tmp' where product= '{$rs[0]['product']}'";
         $sth1 = $this->db->prepare($sql1);
         $sth1->execute();
-        if ($sth1->rowCount() != 1) {
+        if ($sth1->rowCount() == 0) {
             return false;
         }
         return true;
