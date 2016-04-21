@@ -13,7 +13,7 @@ class sqldb {
 
     function sqldb() {
         $dbInfo = array(
-            "dns" => "",
+            "dsn" => "",
             "user" => "",
             "pass" => "",
         );
