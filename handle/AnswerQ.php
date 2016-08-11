@@ -12,12 +12,11 @@ require_once '../class/sql.php';
 class AnswerQ {
     private $email=null;
      function AnswerQ(){
-        $this->db=new sqldb();
-        $this->mmc = new Memcache;
-        $this->mmc->connect();  
+        $this->db=sqldb::getInstance("MYSQL");
+		$this->mmc=sqldb::getInstance("MC");
         $this->product=  isset($_SESSION['product'])?$_SESSION['product']:null;
         $this->Word=  isset($_SESSION['kind'])?$_SESSION['kind']:null;
-        $this->email=$_SESSION['email'];
+        $this->email=isset($_SESSION['email'])?isset($_SESSION['email']):"noone";
     }
     
         
@@ -93,13 +92,7 @@ class AnswerQ {
     }
     
     function MatchWord2Kind(){
-            $tmp="(";
-            foreach ($this->Word as $v) {
-                $tmp.="'$v',";
-            }
-            $tmp=substr($tmp,0,strlen($tmp)-1); 
-            $tmp.=")";
-        $res=$this->db->getKind($this->product,$tmp);
+        $res=$this->db->getKind($this->product,$this->Word);
         if(!$res){
             return false;
         }

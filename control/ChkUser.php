@@ -10,7 +10,6 @@ $act = isset($_POST['act']) ? $_POST['act'] : null;
 $word = isset($_POST['word']) ? $_POST['word'] : null;
 $H=new user();
 
-
 switch ($act) {
     case 1:
      $res= $H->chkUserStatu();
@@ -21,6 +20,7 @@ switch ($act) {
      }else{
         $result=true;
         $data=$H->getMenu();
+		$msg=null;
      }	
     break;
     case 2:
@@ -28,9 +28,11 @@ switch ($act) {
         if($res){
             $data=$H->getMenu();
             $result=true;
+			$msg="";
         }else{
             $result=false;
             $msg="登陆失败";
+			$data="";
         }
     break;
 default :
@@ -39,7 +41,6 @@ default :
 
         $res = array(
             'result' => $result,
-            'code' => $code,
             'msg' => $msg,
             'data' => $data,
         );

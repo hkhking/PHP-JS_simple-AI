@@ -17,7 +17,7 @@ class LogSearch{
         $this->help=$help;
         $this->startT=$startT;
         $this->stopT=$stopT;
-        $this->db=new sqldb();
+        $this->db=sqldb::getInstance("MYSQL");
         
         if(in_array($act,array(0,2,3,4,5))){
             $this->act=$act;
@@ -36,17 +36,22 @@ class LogSearch{
         }
         
         if(!is_null($this->product)&&$this->product!="all"){
-            $this->where.="product='$this->product' and ";
+            //$this->where.="product='$this->product' and ";
+			$this->where['product']=$this->product;
         }
         if(!is_null($this->kind) && $this->kind!="all"){
-            $this->where.="kind = '$this->kind' and ";
+            //$this->where.="kind = '$this->kind' and ";
+			$this->where['kind']=$this->kind;
         }
         if(!is_null($this->help) && $this->help!="all"){
-            $this->where.="statu='$this->help' and ";
+            //$this->where.="statu='$this->help' and ";
+			$this->where['help']=$this->help;
         }
-        
+ 
         if(!is_null($this->startT)||!is_null($this->stopT)){
-            $this->where.="stime between '$this->startT 00:00:00' and '$this->stopT 23:59:59'";
+            //$this->where.="stime between '$this->startT 00:00:00' and '$this->stopT 23:59:59'";
+			$this->where['startT']=$this->startT;
+			$this->where['stopT']=$this->stopT;
         }else{
             $this->act= 11;
         }

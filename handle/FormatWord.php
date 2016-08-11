@@ -12,7 +12,7 @@ class FormatWord {
     private $key=array();
     
    function ForMatWord($word){
-        $this->db=new sqldb();
+        $this->db=sqldb::getInstance("MYSQL");
         $this->word=trim($word);
         $this->word=str_replace('"', '', $this->word);
         $this->word=str_replace("'", '', $this->word);
@@ -52,12 +52,13 @@ class FormatWord {
            if($v2!=''||!empty($v2)){//关键字容错
                 $res=stristr($this->word,$v2);
                   if($res){
-                      $tmp2[$k]++;
+                      $tmp2[$k]=isset($tmp2[$k])?$tmp2[$k]+1:1;
                   }
             }
            }
          }
-         if(is_null($tmp2)){
+
+         if(!isset($tmp2)||is_null($tmp2)){
              return;
          }
          

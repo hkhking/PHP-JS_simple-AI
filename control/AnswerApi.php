@@ -13,6 +13,9 @@ require '../handle/AnswerQ.php';
 $act = isset($_POST['act']) ? replaceSpecialchars(trim($_POST['act'])) : null;
 $word = isset($_POST['word']) ? replaceSpecialchars(trim($_POST['word'])) : null;
 $user=isset($_POST['user']) ? replaceSpecialchars(trim($_POST['user'])) : null;
+$msg=null;
+$data=null;
+
 
 
 if($act==0){
@@ -72,6 +75,7 @@ switch ($act) {
     case 7:
         $A0->ChangeStatu($word);
         $code=7;
+		$result=true;
         break;
     case 11:
         $result=false;

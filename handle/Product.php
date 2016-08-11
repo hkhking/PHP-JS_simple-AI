@@ -9,7 +9,9 @@ require_once '../class/sql.php';
 
 class Product {
     function Product(){
-         $this->db=new sqldb();
+         //$this->db=new sqldb();
+		 $this->db=sqldb::getInstance("MYSQL");
+		 $this->mc=sqldb::getInstance("MC");
     }
     
     function ShowEditForm($word){
@@ -117,8 +119,6 @@ class Product {
     }
     
     function delMC(){
-        $mmc = new Memcache;
-        $mmc->connect(); 
-        $mmc->flush();
+		$this->mc->flush();
     }
 }

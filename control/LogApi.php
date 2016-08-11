@@ -17,6 +17,7 @@ $stopT = isset($_POST['stopT']) ? $_POST['stopT'] : null;
 $id = isset($_POST['id']) ? $_POST['id'] : null;
 $sqldb = isset($_POST['sqldb']) ? $_POST['sqldb'] : null;
 $page = isset($_POST['page']) ? $_POST['page'] : null;
+$msg=null;
 
 if(isset($_REQUEST['a'])){
     $act=5;

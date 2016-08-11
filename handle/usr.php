@@ -28,7 +28,8 @@ class user{
     function UserLogin($d){
         $data=$this->format($d);
         $db= whitelist::$usr;
-        if($data['pwd']===$db[$data['user']]['pwd']&&  !is_null($data['user'])){
+
+        if(array_key_exists($data['user'],$db) &&$data['pwd']===$db[$data['user']]['pwd']){
             $_SESSION['ssid']=1;
             $_SESSION['state']=$db[$data['user']]['state'];
             $_SESSION['user']=$data['user'];

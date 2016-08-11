@@ -2,6 +2,8 @@
  * IM系统 后台控制
  * yunhao@staff.sina.com.cn
  * 2014-12-23
+ bug:2016-08-11  edge cant use uediter
+
  */
 
 $(document).ready(function () {
@@ -19,9 +21,14 @@ $(document).ready(function () {
                 $("#KindWord").val(res.word);
                 $("#WordKind").val(res.kind);
                 $("#Question").val(res.question);
-                answear.setContent(res.answear);
                 $("#ProductId").val(res.id);
+				
+				answear.addListener("ready", function () {
+				     answear.setContent(res.answear);
+				});
+				
                 $("#showTip2").show("slow");
+				
             } else {
                 alert(res);
             }
