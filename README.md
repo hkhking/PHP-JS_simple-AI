@@ -9,11 +9,14 @@
 # update:
   
    2016-08-28
-        Add router, No access to files and debug more
-            using router to access modules
+   
+        Add router, No access to files and debug more	
+            using router to access modules	
+            
    2016-08-10
-       Rebuild database module 
-         Rebuild mysql and memcahe module using singleton and factory. easily switching databases,debug etc
+   
+       Rebuild database module	   
+         Rebuild mysql and memcahe module using singleton and factory. easily switching databases,debug etc	
          
 # Original version:
  
