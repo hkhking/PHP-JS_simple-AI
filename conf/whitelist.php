@@ -1,19 +1,18 @@
 <?php
 
 /* 
- * 2015-03-20 yunhao
- * 登陆白名单 
+ * 2015-03-20 hkhking
+ * user logining list 
  */
 
-class whitelist{
-    public static $usr=array(
+
+    return array(
         "ai1"=>array(
                 "pwd"=>"123",
-                "state"=>"a",
+                "statu"=>"a",
         ),
         "ai2"=>array(
                 "pwd"=>"123",
-                "state"=>"b",
+                "statu"=>"b",
         ),
     );
-}

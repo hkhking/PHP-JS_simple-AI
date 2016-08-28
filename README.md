@@ -3,10 +3,15 @@
   
   my tips:
    2016-08-10
-        i was rebuild it ^_^
+        i am rebuilding it ^_^
+
   update:
+   2016-08-28
+        Add router, No access to files and debug more
+            using router to access modules
    2016-08-10
        Rebuild database module 
          Rebuild mysql and memcahe module using singleton and factory. easily switching databases,debug etc
-  
-  demo:http://kefuai.applinzi.com
+ 
+ Original version:
+        demo:http://kefuai.applinzi.com

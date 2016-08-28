@@ -11,7 +11,7 @@ $(document).ready(function(){
             a="无";
      }
         
-     $.post("../control/AnswerApi.php",{"act":1,"user":a},function(res){
+     $.post("../control/AnswerApi",{"act":1,"user":a},function(res){
          var a="<li><label>请选择以下产品线：</label><br/>";
          if(res.data.email!=null){
              email=res.data.email;
@@ -26,7 +26,7 @@ $(document).ready(function(){
      $("#text").on("click",".productChoose",function(){
          var a=this.text;
          $("#flag").before("<p>"+a+":<span>"+email+"<span></p>");
-         $.post("../control/AnswerApi.php",{"act":6,"word":a},function(res){
+         $.post("../control/AnswerApi",{"act":6,"word":a},function(res){
              var b="<li><label>请问有什么需要帮助的？</label><br/>";
              if(res.data!=false){
                  $.each(res.data,function(idx,obj) {
@@ -42,7 +42,7 @@ $(document).ready(function(){
      $("#text").on("click",".questionChoose",function(){
           var a=this.text;
          $("#flag").before("<p>"+a+":<span>"+email+"<span></p>");
-         $.post("../control/AnswerApi.php",{"act":5,"word":a},function(res){
+         $.post("../control/AnswerApi",{"act":5,"word":a},function(res){
              var b="<li class='answear'>";
              b=b+res.data.answear
              b=b+"</li>";
@@ -58,7 +58,7 @@ $(document).ready(function(){
             return false;
         }
          $("#flag").before("<p>"+a+":<span>"+email+"<span></p>");
-         $.post("../control/AnswerApi.php",{"act":0,"word":a},function(res){
+         $.post("../control/AnswerApi",{"act":0,"word":a},function(res){
                  var b="<li class='answear'>";
                  var arr=new Array();
                 if(res.code==11){

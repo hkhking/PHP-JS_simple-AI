@@ -13,7 +13,7 @@ $(document).ready(function () {
 });
 
 function postTypeLogin(a,b){
-    $.post("control/ChkUser.php",{"act":a,"word":b},function(res){
+    $.post("control/chkuser",{"act":a,"word":b},function(res){
         if(!res.result){
             alert(res.msg);
         }else{

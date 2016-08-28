@@ -1,56 +1,61 @@
 <?php
 
 /* 
- * yunhao 2015.03.12
- * 用户验证类
- * userStatu:0=>未登录；1=>已登陆；2=>账户异常
+ * 2016-08-27 hkhking
+ * class of check userstatu
+ * userStatu:0=>logout；1=>logined；2=>userstatu error
  */
 
-include_once '../class/whitelist.php';
-
 class user{
-    function user(){
-        session_set_cookie_params(12 * 60 * 60); //设置cookie的有效期
-        session_cache_expire(12 * 60 * 60); //设置session的有效期
-        session_start();
-        date_default_timezone_set("PRC");
-        if(empty($_SESSION['ssid'])||!isset($_SESSION['ssid'])||$_SESSION['ssid']==""){
-           $this->userStatu=0;
-        }else{
-           $this->userStatu= $_SESSION['ssid'];
+    
+    private static $getInstance=null;
+    
+    private function __clone() {}
+    
+    private function __construct() {}
+    
+    
+    static  function getInstance(){
+        if(!(self::$getInstance Instanceof self)){
+            self::$getInstance=new self;
         }
+        return self::$getInstance;
     }
     
-    function chkUserStatu(){
-       return $this->userStatu;
+    function chkUserStatu($a){
+        if(isset($_SESSION['statu'])&&$_SESSION['statu']==$a){
+            return true;
+        }
+       return false;
     }
+    
+
     
     function UserLogin($d){
-        $data=$this->format($d);
-        $db= whitelist::$usr;
-
+        $data=self::format($d);
+        $db= include 'conf/whitelist.php';
+     
         if(array_key_exists($data['user'],$db) &&$data['pwd']===$db[$data['user']]['pwd']){
-            $_SESSION['ssid']=1;
-            $_SESSION['state']=$db[$data['user']]['state'];
+            $_SESSION['statu']=$db[$data['user']]['statu'];
             $_SESSION['user']=$data['user'];
             return true;
         }
         return false;
     }
     
-    function getMenu(){
-        switch ($_SESSION['state']) {
+   function getMenu(){
+        switch ($_SESSION['statu']) {
             case "a":
-            $res="tmpl/admin.php";
+            $res="admin/admin";
             break;
             case "b":
-            $res="tmpl/adminLog.php ";
+            $res="admin/adminLog";
             default:
                 break;
         }
         return $res;
     }
-    public function format($tmp1, $type = "&&") {
+  function format($tmp1, $type = "&&") {
         $tmp = urldecode($tmp1);
         $str = trim($tmp);
         $res = explode($type, $str);

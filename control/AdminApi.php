@@ -6,92 +6,94 @@
  * @date 2014-12-23
  * 
  */
-require '../handle/Product.php';
+include 'handle/Product.php';
 
-$act = isset($_POST['act']) ? $_POST['act'] : null;
-$word = isset($_POST['word']) ? $_POST['word'] : null;
+class AdminApi extends Ccontrol {
 
-$pro=new Product();
+    use Product;
 
-switch ($act) {
-    case "Index":
-        $res=$pro->ShowProductList();
-    break;
-    case "AddPro":
-        $res=$pro->AddProduct($word);
-        if($res){
-            $pro->delMC();
+    function doaction() {
+        switch ($this->act) {
+            case "Index":
+                $res = $this->ShowProductList();
+                break;
+            case "AddPro":
+                $res = $this->AddProduct();
+                if ($res) {
+                    $this->delMC();
+                }
+                break;
+            case "ChangeStatu":
+                $res = $this->ProChangeStatu();
+                if ($res) {
+                    $this->delMC();
+                }
+                break;
+            case "UpdatePro":
+                $res = $this->ProUpdateName();
+                if ($res) {
+                    $this->delMC();
+                }
+                break;
+            case "InfoPro";
+                $res = $this->InfoPro($this->word);
+                break;
+            case "ChangeStatuWord":
+                $res = $this->WordChangeStatu();
+                if ($res != false) {
+                    $res = $this->InfoPro($res);
+                }
+                if ($res) {
+                    $this->delMC();
+                }
+                break;
+            case "AddWord":
+                $res = $this->AddWord();
+                if ($res != false) {
+                    $res = $this->InfoPro($res);
+                }
+                if ($res) {
+                    $this->delMC();
+                }
+                break;
+            case "ShowEidtForm":
+                $res = $this->ShowEditForm();
+                break;
+            case "UpdateWord":
+                foreach ($this->word as $v) {
+                    $tmp[] = addslashes($v);
+                }
+                $res = $this->UpdateWord($tmp);
+                if ($res != false) {
+                    $res = $this->InfoPro($res);
+                }
+                if ($res) {
+                    $this->delMC();
+                }
+                break;
+            case "DelPro":
+                $res = $this->DelPro();
+                if ($res) {
+                    $this->delMC();
+                }
+                break;
+            case "DelWord":
+                $res = $this->DelWord();
+                if ($res != false) {
+                    $res = $this->InfoPro($res);
+                }
+                if ($res) {
+                    $this->delMC();
+                }
+                break;
+            default:
+                $res = false;
+                break;
         }
-    break;
-    case "ChangeStatu":
-        $res=$pro->ProChangeStatu($word);
-        if($res){
-            $pro->delMC();
-        }
-    break;
-    case "UpdatePro":
-        $res=$pro->ProUpdateName($word);
-        if($res){
-            $pro->delMC();
-        }
-    break;
-    case "InfoPro";
-        $res=$pro->InfoPro($word);
-    break;
-    case "ChangeStatuWord":
-        $res=$pro->WordChangeStatu($word);
-        if($res!=false){
-            $res=$pro->InfoPro($res);
-        }
-        if($res){
-            $pro->delMC();
-        }
-    break;
-    case "AddWord":
-        $res=$pro->AddWord($word);
-        if($res!=false){
-            $res=$pro->InfoPro($res);
-        }
-        if($res){
-            $pro->delMC();
-        }
-    break;
-    case "ShowEidtForm":
-        $res=$pro->ShowEditForm($word);
-    break;
-    case "UpdateWord":
-        foreach ($word as $v) {
-                $tmp[]=addslashes($v); 
-        }
-        $res=$pro->UpdateWord($tmp);
-        if($res!=false){
-            $res=$pro->InfoPro($res);
-        }
-        if($res){
-            $pro->delMC();
-        }
-    break;
-    case "DelPro":
-        $res=$pro->DelPro($word);
-        if($res){
-            $pro->delMC();
-        }
-    break;
-    case "DelWord":
-        $res=$pro->DelWord($word);
-         if($res!=false){
-            $res=$pro->InfoPro($res);
-        }
-        if($res){
-            $pro->delMC();
-        }
-    break;
-    default:
-         $res=false;
-        break;
-}
-if(!$res){
-    echo "ERROR";
-}else{
-    echo $res;
+        $this->res = array(
+            'result' => true,
+            'data' => $res,
+        );
+    }
+
 }

@@ -10,7 +10,7 @@
 		msg = $('#inputMsg'),
 		send = $('#sendQuestion'),
 		close = $('#closeWin'),
-		api = 'control/AnswerApi.php',//访问API
+		api = 'control/AnswerApi',//访问API
 		ctrl = false,
 		/**
 		 * Ajax 访问
